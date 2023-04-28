@@ -16,8 +16,13 @@ def ridge(data):
 
 
 def lasso(data):
+    a = 0.01
+    t = 0.1
     x,y = read_data()
-    weight = np.
+    min_max_scaler = preprocessing.MinMaxScaler()
+    x_minMax = min_max_scaler.fit_transform(x)
+    weight = weight - a*np.matmul(np.linal.inv(np.matmul(x.T,x)),np.matmul(x.T,y)-t/2)
+    return weight @ data
 
 def read_data(path='./data/exp02/'):
     x = np.load(path + 'X_train.npy')
