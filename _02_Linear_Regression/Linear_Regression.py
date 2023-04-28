@@ -10,15 +10,16 @@ except ImportError as e:
 
 def ridge(data):
     x,y = read_data()
-    weight = =np.linal.inv(np.matmul(x.T,x)),np.matmul(x.T,y))
+    t = 0.1
+    weight = np.matmul(np.linal.inv(np.matmul(x.T,x)+t*np.eye()),np.matmul(x.T,y))
     return weight @ data
 
 
 def lasso(data):
-    pass
+    x,y = read_data()
+    weight = np.
 
-
-def read_data(path='../data/exp02/'):
+def read_data(path='./data/exp02/'):
     x = np.load(path + 'X_train.npy')
     y = np.load(path + 'y_train.npy')
     return x, y
